@@ -46,3 +46,13 @@ func StringMapFrom2Slices(keys, values []string) (map[string]string, error) {
 	return stringMap, nil
 }
 
+func FindIntInSlice(intSlice []int, target int) bool {
+	for _, integer := range intSlice {
+		if integer == target {
+			return true
+		}
+	}
+
+	return false
+}
+
