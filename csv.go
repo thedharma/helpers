@@ -8,14 +8,14 @@ import (
 )
 
 
-type record struct {
+type Record struct {
 	headerIndexMap *map[string]int
 	values []string
 }
 
 
 
-func (r *record) Lookup(header string) string {
+func (r *Record) Lookup(header string) string {
 	headerIndex, found := (*r.headerIndexMap)[header]
 	if !found {
 		panic("header title not found")
@@ -23,7 +23,7 @@ func (r *record) Lookup(header string) string {
 	return r.values[headerIndex]
 }
 
-func CSVReaderToRecords(csvReader *csv.Reader) []record {
+func CSVReaderToRecords(csvReader *csv.Reader) []Record {
 	
 	headerSlice, err := csvReader.Read()
 	
@@ -33,7 +33,7 @@ func CSVReaderToRecords(csvReader *csv.Reader) []record {
 
 	headerIndexMap := GetSliceIndexMap(headerSlice)
 
-	var records []record
+	var records []Record
 
 	for {
 		recordSlice, err := csvReader.Read()
@@ -43,7 +43,7 @@ func CSVReaderToRecords(csvReader *csv.Reader) []record {
 			panic(fmt.Sprintf("Error reading record slice with %v", err))
 		}
 
-		recordStruct := record{
+		recordStruct := Record{
 			headerIndexMap: &headerIndexMap,
 			values: recordSlice,
 		}
