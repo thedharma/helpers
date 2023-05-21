@@ -3,6 +3,7 @@ package helpers
 import (
 	"errors"
 	"fmt"
+	"bytes"
 )
 
 func StringMapFrom2Slices(keys, values []string) (map[string]string, error) {
@@ -39,5 +40,13 @@ func GetSliceIndexMap(slice []string) map[string]int {
 	}
 
 	return sliceIndexMap
+}
+
+func RemoveUTF8BOM(bomString string) string {
+	if bytes.Equal([]byte(bomString[:3]), []byte{0xEF, 0xBB, 0xBF}) {
+		return bomString[3:]
+	}
+
+	return bomString
 }
 
