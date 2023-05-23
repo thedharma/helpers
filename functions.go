@@ -50,3 +50,15 @@ func RemoveUTF8BOM(bomString string) string {
 	return bomString
 }
 
+func GetKeySliceFromMap(stringMap map[string]any) []string {
+	keySlice := make([]string, len(stringMap))
+
+	i := 0
+	for key := range stringMap {
+		keySlice[i] = key
+		i++
+	}
+
+	return keySlice
+}
+
