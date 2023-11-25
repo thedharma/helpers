@@ -42,7 +42,7 @@ func GetSliceIndexMap(slice []string) map[string]int {
 	return sliceIndexMap
 }
 
-func RemoveUTF8BOM(bomString string) string {
+func RemoveBOM(bomString string) string {
 	if bytes.Equal([]byte(bomString[:3]), []byte{0xEF, 0xBB, 0xBF}) {
 		return bomString[3:]
 	}

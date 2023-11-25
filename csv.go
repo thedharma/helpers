@@ -26,6 +26,8 @@ func (r *Record) Lookup(header string) string {
 func CSVReaderToRecords(csvReader *csv.Reader) []Record {
 	
 	headerSlice, err := csvReader.Read()
+
+	headerSlice[0] = RemoveBOM(headerSlice[0])
 	
 	if err != nil {
 		panic(fmt.Sprintf("Error reading header with %v", err))
