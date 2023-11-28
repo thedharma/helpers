@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"bytes"
+	"math/rand"
+	"time"
 )
 
 func StringMapFrom2Slices(keys, values []string) (map[string]string, error) {
@@ -61,4 +63,12 @@ func GetKeySliceFromMap(stringMap map[string]bool) []string {
 
 	return keySlice
 }
+
+func ShuffleSlice(slice []int) {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	r.Shuffle(len(slice), func(i, j int) {
+		slice[i], slice[j] = slice[j], slice[i]
+	})
+}
+
 
