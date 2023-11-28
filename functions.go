@@ -64,7 +64,7 @@ func GetKeySliceFromMap(stringMap map[string]bool) []string {
 	return keySlice
 }
 
-func ShuffleSlice(slice []int) {
+func ShuffleSlice(slice []any) {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	r.Shuffle(len(slice), func(i, j int) {
 		slice[i], slice[j] = slice[j], slice[i]
